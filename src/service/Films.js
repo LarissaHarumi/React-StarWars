@@ -1,13 +1,34 @@
-import React from 'react';
-import { Card, Grid } from 'semantic-ui-react';
-
+import { Card, Grid,Input } from 'semantic-ui-react';
+import React, { useState, useEffect} from 'react';
 
 export default function Films({data}) {
+    const [searchText, setSearchText] = useState('');
+    const [filteredList, setFilteredList] = useState([]);
+    useEffect(() => {
+        setFilteredList(data);
+    
+      }, [data]);
+    const search = (value) => {
+        setSearchText(value);
+        const filteredData = data.filter((film) => {
+            return film.title.toLowerCase().includes(value.toLowerCase());
+        });
+        setFilteredList(filteredData);
+    }
   return (
     <>
     <h1>Films</h1>
+    <Input
+        icon={{name: 'search', circular: true, link: true}}
+        placeholder='Search'
+        value={searchText}
+        onChange={(e) => search(e.target.value) }
+     />
+     <br/>
+     <br/>
+
     <Grid columns={3}>
-        {data.map((films, i) =>{
+        {filteredList.map((films, i) =>{
             return(
                 <Grid.Column key={i}>
                     <Card>

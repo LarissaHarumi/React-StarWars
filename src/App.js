@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { Container, Dimmer, Loader } from 'semantic-ui-react';
-import Home from './components/Home';
-import People from './components/People';
-import Planets from './components/Planets';
-import Films from './components/Films';
-import Vehicles from './components/Vehicles';
-import Starships from './components/Starships';
-import Species from './components/Species';
+import Home from './service/Home';
+import People from './service/People';
+import Planets from './service/Planets';
+import Films from './service/Films';
+import Vehicles from './service/Vehicles';
+import Starships from './service/Starships';
+import Species from './service/Species';
 
 function App() {
   const [people, setPeople] = useState([]);
@@ -59,9 +59,6 @@ function App() {
       setSpecies(data.results);
       setLoading(false);
     }
-  
-   
-    
    
     fetchPeople();
     fetchPlanets();
@@ -70,12 +67,6 @@ function App() {
     fetchStarships();
     fetchSpecies();
 
-
-
-  
- 
-
-    
   }, []);
   console.log('people',people);
   console.log('planets',planets);
@@ -83,10 +74,6 @@ function App() {
   console.log('vehicles',vehicles);
   console.log('starships',starships);
   console.log('species',species);
-
-
-
-
 
   return (
     <>
@@ -127,9 +114,7 @@ function App() {
 
     </Router>
     
-   
     </>
   );
 }
-
 export default App;
